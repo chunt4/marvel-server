@@ -1,4 +1,6 @@
-class _marvel_database:
+import json
+
+class _hero_database:
 	def __init__(self):
 		self.hero_names = dict()
 		self.hero_align = dict()
@@ -6,9 +8,9 @@ class _marvel_database:
 		self.hero_sex = dict()
 		self.hero_iden = dict()
 
-	def load_marvel(self, marvel_file):
-		f = open(marvel-wikia-data_json.json)
-		data = json.loads(f.decode('utf-8'))
+	def load_heroes(self, heroes_file):
+		f = open(heroes_file)
+		data = json.load(f)
 		i = 0
 		for hero in data:
 			name = hero['name']
@@ -23,7 +25,7 @@ class _marvel_database:
 			self.hero_sex[i] = sex
 			self.hero_iden[i] = iden
 
-			i++
+			i = i + 1
 
 		f.close()
 
@@ -57,3 +59,16 @@ class _marvel_database:
 		del(self.hero_alive[hid])
 		del(self.hero_sex[hid])
 		del(self.hero_iden[hid])
+
+
+if __name__ == "__main__":
+	hdb = _hero_database()
+
+	hdb.load_heroes('heroes.dat')
+	
+	heroes = hdb.get_heroes()
+	for h in heroes:
+		hero = hdb.get_hero(h)
+		print(hero[0])
+
+
