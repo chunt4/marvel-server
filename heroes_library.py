@@ -41,7 +41,7 @@ class _hero_database:
 			hiden = self.hero_iden[hid]
 			hero = list((hname, halign, halive, hsex, hiden))
 		except Exception as e:
-			hero = none
+			hero = None
 			print(str(e))
 
 		return hero

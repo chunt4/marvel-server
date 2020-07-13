@@ -19,7 +19,7 @@ class TestHeroes(unittest.TestCase):
 			return False
 
 	# test get request with hero_id
-	def test_heroes_get(self):
+	def test_a_heroes_get(self):
 		hero_id = 3
 		r = requests.get(self.HEROES_URL + str(hero_id))
 		self.assertTrue(self.is_json(r.content.decode('utf-8')))
@@ -31,7 +31,7 @@ class TestHeroes(unittest.TestCase):
 		self.assertEqual(resp['iden'], 'public identity')
 
 	# test put request with hero_id
-	def test_heroes_put(self):
+	def test_b_heroes_put(self):
 		hero_id = 25
 
 		r = requests.get(self.HEROES_URL + str(hero_id))
@@ -61,7 +61,7 @@ class TestHeroes(unittest.TestCase):
 		self.assertEqual(resp['iden'], h['iden'])
 
 	# test index get request
-	def test_heroes_index_get(self):
+	def test_c_heroes_index_get(self):
 		r = requests.get(self.HEROES_URL)
 		self.assertTrue(self.is_json(r.content.decode()))
 		resp = json.loads(r.content.decode())
@@ -80,7 +80,7 @@ class TestHeroes(unittest.TestCase):
 		self.assertEqual(testhero['sex'], 'male characters')
 		self.assertEqual(testhero['iden'], 'no dual identity')
 
-	def test_movies_index_post(self):
+	def test_d_heroes_index_post(self):
 
 		h = {}
 		h['name'] = 'Java Man'
@@ -89,7 +89,7 @@ class TestHeroes(unittest.TestCase):
 		h['sex'] = 'male characters'
 		h['iden'] = 'no dual identity'
 
-		r = requests.post(self.HEROES_URL, data = json.dumps(h))
+		r = requests.post(self.HEROES_URL, data=json.dumps(h))
 		self.assertTrue(self.is_json(r.content.decode()))
 		resp = json.loads(r.content.decode())
 		self.assertEqual(resp['result'], 'success')
@@ -98,14 +98,14 @@ class TestHeroes(unittest.TestCase):
 		r = requests.get(self.HEROES_URL + str(resp['id']))
 		self.assertTrue(self.is_json(r.content.decode()))
 		resp = json.loads(r.content.decode())
-		self.assertEqual(resp['name'], h['Java Man'])
-		self.assertEqual(resp['align'], h['bad characters'])
-		self.assertEqual(resp['alive'], h['living characters'])
-		self.assertEqual(resp['sex'], h['male characters'])
-		self.assertEqual(resp['iden'], h['no dual identity'])
+		self.assertEqual(resp['name'], h['name'])#h['Java Man'])
+		self.assertEqual(resp['align'], h['align'])#h['bad characters'])
+		self.assertEqual(resp['alive'], h['alive'])#h['living characters'])
+		self.assertEqual(resp['sex'], h['sex'])#h['male characters'])
+		self.assertEqual(resp['iden'], h['iden']) #h['no dual identity'])
 
 	# test delete request with hero_id
-	def test_heroes_delete(self):
+	def test_e_heroes_delete(self):
 		hero_id = 4
 
 		h = {}
@@ -119,7 +119,7 @@ class TestHeroes(unittest.TestCase):
 		resp = json.loads(r.content.decode('utf-8'))
 		self.assertEqual(resp['result'], 'error')
 
-	def test_movies_index_delete(self):
+	def test_f_heroes_index_delete(self):
 		h = {}
 		r = requests.delete(self.HEROES_URL, data = json.dumps(h))
 		self.assertTrue(self.is_json(r.content.decode()))
