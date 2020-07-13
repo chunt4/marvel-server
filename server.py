@@ -1,24 +1,23 @@
 import cherrypy
 from heroesController import HeroController
-from marvel_library import _hero_database
-
+from heroes_library import _hero_database
 
 def start_service():
 
         dispatcher = cherrypy.dispatch.RoutesDispatcher()
         hdb = _hero_database()
-        heroController = HeroController(mdb=mdb) 
+        heroController = HeroController(hdb=hdb) 
 
-        dispatcher.connect('hero_get', '/marvel/:hero_id', controller = heroController, action = 'GET_KEY', conditions=dict(method=['GET']))
-        dispatcher.connect('hero_put', '/marvel/:hero_id', controller=heroController, action = 'PUT_KEY', conditions=dict(method=['PUT']))
-        dispatcher.connect('hero_delete', '/marvel/:hero_id', controller=heroController, action = 'DELETE_KEY', conditions=dict(method=['DELETE']))
-        dispatcher.connect('hero_index_get', '/marvel/', controller=heroController, action = 'GET_INDEX', conditions=dict(method=['GET']))
-        dispatcher.connect('hero_index_post', '/marvel/', controller=heroController, action = 'POST_INDEX', conditions=dict(method=['POST']))
-        dispatcher.connect('hero_index_delete', '/marvel/', controller=heroController, action = 'DELETE_INDEX', conditions=dict(method=['DELETE']))
+        dispatcher.connect('hero_get', '/heroes/:hero_id', controller = heroController, action = 'GET_KEY', conditions=dict(method=['GET']))
+        dispatcher.connect('hero_put', '/heroes/:hero_id', controller=heroController, action = 'PUT_KEY', conditions=dict(method=['PUT']))
+        dispatcher.connect('hero_delete', '/heroes/:hero_id', controller=heroController, action = 'DELETE_KEY', conditions=dict(method=['DELETE']))
+        dispatcher.connect('hero_index_get', '/heroes/', controller=heroController, action = 'GET_INDEX', conditions=dict(method=['GET']))
+        dispatcher.connect('hero_index_post', '/heroes/', controller=heroController, action = 'POST_INDEX', conditions=dict(method=['POST']))
+        dispatcher.connect('hero_index_delete', '/heroes/', controller=heroController, action = 'DELETE_INDEX', conditions=dict(method=['DELETE']))
 
         # CORS related options connections
-        dispatcher.connect('hero_key_options', '/marvel/:hero_id', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
-        dispatcher.connect('hero_options', '/marvel/', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
+        dispatcher.connect('hero_key_options', '/heroes/:hero_id', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
+        dispatcher.connect('hero_options', '/heroes/', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
         #dispatcher.connect('reset_key_options', '/reset/:hero_id', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
         #dispatcher.connect('reset_options', '/reset/', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
         #dispatcher.connect('rating_options', '/ratings/:hero_id', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
@@ -27,7 +26,7 @@ def start_service():
             'global': {
                 'server.thread_pool': 5,
                 'server.socket_host': 'student04.cse.nd.edu',
-                'server.socket_port': 51027, #change port number to your assigned
+                'server.socket_port': 51031, #change port number to your assigned
                 },
             '/': {
                 'request.dispatch': dispatcher,
