@@ -7,7 +7,7 @@ import json
 
 class TestHeroes(unittest.TestCase):
 
-	SITE_URL = 'http://student04.cse.nd.edu:51022'
+	SITE_URL = 'http://student04.cse.nd.edu:51031'
 	print("testing for server: " + SITE_URL)
 	HEROES_URL = SITE_URL + '/heroes/'
 
@@ -104,16 +104,8 @@ class TestHeroes(unittest.TestCase):
 		self.assertEqual(resp['sex'], h['sex'])#h['male characters'])
 		self.assertEqual(resp['iden'], h['iden']) #h['no dual identity'])
 
-	def test_e_heroes_query(self):
-		query = 'tony stark'
-		h = {}
-		r = request.get(self.HEROES_URL + str(query), data=json.dumps(h))
-		self.assertTrue(self.is_json(r.content.decode()))
-		resp = json.loads(r.content.decode())
-		print(resp['hero_list'][0]['name'])
-
 	# test delete request with hero_id
-	def test_f_heroes_delete(self):
+	def test_e_heroes_delete(self):
 		hero_id = 4
 
 		h = {}
@@ -127,7 +119,7 @@ class TestHeroes(unittest.TestCase):
 		resp = json.loads(r.content.decode('utf-8'))
 		self.assertEqual(resp['result'], 'error')
 
-	def test_g_heroes_index_delete(self):
+	def test_f_heroes_index_delete(self):
 		h = {}
 		r = requests.delete(self.HEROES_URL, data = json.dumps(h))
 		self.assertTrue(self.is_json(r.content.decode()))
