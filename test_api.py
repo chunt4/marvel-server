@@ -49,6 +49,11 @@ class TestLibrary(unittest.TestCase):
 		self.assertEqual(hero[3], 'male characters')
 		self.assertEqual(hero[4], 'public identity')
 
+	def test_search_hero(self):
+		hdb = _hero_database()
+		hdb.load_heroes('heroes.dat')
+		query = "iron man"
+
 	def test_set_hero(self):
 		hdb = _hero_database()
 		hdb.load_heroes('heroes.dat')
