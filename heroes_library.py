@@ -59,49 +59,12 @@ class _hero_database:
 		del(self.hero_alive[hid])
 		del(self.hero_sex[hid])
 		del(self.hero_iden[hid])
-		
 
-def string_compare(s1, s2):
-	match = {'match':'false'}
-	i = 0
-	
-	while (i < len(s1)-1) and (s1[i] == s2[i]):
-		i = i + 1
-		
-	if i >= 6:
-		match['match'] = 'true'
-		match['rate'] = i
-		
-	return match
-	
-
-def search_compare(string1, string2, match):
-	if match['match'] == 'true':
-		print('the term has been matched')
-		return match
-
-	if string1 is not None:
-		match = {'match':''}
-		if string1[0] == string2[0]:
-			match = string_compare(string1, string2)
-			if match['match'] == 'true':
-				return match
-		else:
-			match = search_compare(string1[1:], string2, match)
-
-	return match
-			
 
 if __name__ == "__main__":
 	hdb = _hero_database()
 
 	hdb.load_heroes('heroes.dat')
-
-	match_dict = search_compare("iron man (tony stark)", "tony stark",{'match':''})
-
-	#match = string_compare("hello my good pal", "hello there best friend")
-		
-	print(json.dumps(match_dict))
 	
 	# heroes = hdb.get_heroes()
 	# for h in heroes:

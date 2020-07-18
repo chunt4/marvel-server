@@ -14,8 +14,7 @@ def start_service():
         dispatcher.connect('hero_index_get', '/heroes/', controller=heroController, action = 'GET_INDEX', conditions=dict(method=['GET']))
         dispatcher.connect('hero_index_post', '/heroes/', controller=heroController, action = 'POST_INDEX', conditions=dict(method=['POST']))
         dispatcher.connect('hero_index_delete', '/heroes/', controller=heroController, action = 'DELETE_INDEX', conditions=dict(method=['DELETE']))
-        dispatcher.connect('hero_search', '/heroes/:query', controller=heroController, action = 'GET_QUERY', conditions=dict(method=['GET']))
-        
+
         # CORS related options connections
         dispatcher.connect('hero_key_options', '/heroes/:hero_id', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
         dispatcher.connect('hero_options', '/heroes/', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
@@ -27,7 +26,7 @@ def start_service():
             'global': {
                 'server.thread_pool': 5,
                 'server.socket_host': 'student04.cse.nd.edu',
-                'server.socket_port': 51022, #change port number to your assigned
+                'server.socket_port': 51031, #change port number to your assigned
                 },
             '/': {
                 'request.dispatch': dispatcher,
