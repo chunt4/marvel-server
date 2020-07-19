@@ -1,7 +1,7 @@
 import cherrypy
 import re, json
 import time
-from heroes_library import _hero_database
+from heroes_library import _hero_database, search_compare, string_compare, sort_key
 
 class HeroController(object):
 
@@ -44,10 +44,13 @@ class HeroController(object):
 		try:
 			for hid in self.hdb.get_heroes():
 				hero = self.hdb.get_hero(hid)
-				match_dict = search_compare(hero[0], query, {'match':''})
+
+				match_dict = search_compare(hero[0], query, {'match':'false'})
+
 				if match_dict['match'] == 'true':
 					hd = {}
-					hd['id'] = hero_id
+					hd['rate'] = match_dict['rate']
+					hd['id'] = hid
 					hd['name'] = hero[0]
 					hd['align'] = hero[1]
 					hd['alive'] = hero[2]
@@ -58,6 +61,8 @@ class HeroController(object):
 		except Exception as ex:
 			output['result'] = 'error'
 			output['message'] = str(ex)
+
+		output['hero_list'].sort(reverse=True, key=sort_key)
 
 		return json.dumps(output)
 			

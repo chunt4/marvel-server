@@ -14,7 +14,7 @@ def start_service():
         dispatcher.connect('hero_index_get', '/heroes/', controller=heroController, action = 'GET_INDEX', conditions=dict(method=['GET']))
         dispatcher.connect('hero_index_post', '/heroes/', controller=heroController, action = 'POST_INDEX', conditions=dict(method=['POST']))
         dispatcher.connect('hero_index_delete', '/heroes/', controller=heroController, action = 'DELETE_INDEX', conditions=dict(method=['DELETE']))
-        dispatcher.connect('hero_search', '/heroes/:query', controller=heroController, action = 'GET_QUERY', conditions=dict(method=['GET']))
+        dispatcher.connect('hero_search', '/heroes/query/:query', controller=heroController, action = 'GET_QUERY', conditions=dict(method=['GET']))
         
         # CORS related options connections
         dispatcher.connect('hero_key_options', '/heroes/:hero_id', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
@@ -43,16 +43,15 @@ def start_service():
 
 # class for CORS
 class optionsController:
-        def OPTIONS(self, *args, **kwargs):
-                    return ""
+    def OPTIONS(self, *args, **kwargs):
+        return ""
 
 # function for CORS
 def CORS():
     cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
     cherrypy.response.headers["Access-Control-Allow-Methods"] = "GET, PUT, POST, DELETE, OPTIONS"
     cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
-
-
+    
 if __name__ == '__main__':
     cherrypy.tools.CORS = cherrypy.Tool('before_finalize', CORS) # CORS
     start_service()
