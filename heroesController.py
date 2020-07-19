@@ -36,6 +36,33 @@ class HeroController(object):
 
 		return json.dumps(output)
 
+	def GET_QUERY(self, query):
+		output = {'result':'success', 'hero_list':list()}
+
+		query = str(query)
+
+		try:
+			for hid in self.hdb.get_heroes():
+				hero = self.hdb.get_hero(hid)
+				match_dict = search_compare(hero[0], query, {'match':''})
+				if match_dict['match'] == 'true':
+					hd = {}
+					hd['id'] = hero_id
+					hd['name'] = hero[0]
+					hd['align'] = hero[1]
+					hd['alive'] = hero[2]
+					hd['sex'] = hero[3]
+					hd['iden'] = hero[4]
+					output['hero_list'].append(hd)
+
+		except Exception as ex:
+			output['result'] = 'error'
+			output['message'] = str(ex)
+
+		return json.dumps(output)
+			
+		
+
 	def PUT_KEY(self, hero_id):
 		output = {'result' : 'success'}
 		hero_id = int(hero_id)
