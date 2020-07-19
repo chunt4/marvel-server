@@ -65,7 +65,7 @@ def string_compare(s1, s2):
 	match = {'match':'false'}
 	i = 0
 	
-	while (i < len(s1)-1) and (s1[i] == s2[i]):
+	while (i <= len(s1)-1) and (i <= len(s2)-1) and (s1[i] == s2[i]):
 		i = i + 1
 		
 	if i >= 6:
@@ -80,8 +80,8 @@ def search_compare(string1, string2, match):
 		print('the term has been matched')
 		return match
 
-	if string1 is not None:
-		match = {'match':''}
+
+	if string1 != '':
 		if string1[0] == string2[0]:
 			match = string_compare(string1, string2)
 			if match['match'] == 'true':
@@ -90,14 +90,18 @@ def search_compare(string1, string2, match):
 			match = search_compare(string1[1:], string2, match)
 
 	return match
+
+def sort_key(match):
+	return int(match['rate'])
 			
 
 if __name__ == "__main__":
 	hdb = _hero_database()
 
 	hdb.load_heroes('heroes.dat')
+	hero = hdb.get_hero(3)
 
-	match_dict = search_compare("iron man (tony stark)", "tony stark",{'match':''})
+	match_dict = search_compare(hero[0], "iron man",{'match':''})
 
 	#match = string_compare("hello my good pal", "hello there best friend")
 		

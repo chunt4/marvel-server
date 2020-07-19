@@ -105,12 +105,13 @@ class TestHeroes(unittest.TestCase):
 		self.assertEqual(resp['iden'], h['iden']) #h['no dual identity'])
 
 	def test_e_heroes_query(self):
-		query = 'tony stark'
+		query = 'iron man'
 		h = {}
-		r = request.get(self.HEROES_URL + str(query), data=json.dumps(h))
+		r = requests.get(self.HEROES_URL + 'query/' + str(query), data=json.dumps(h))
 		self.assertTrue(self.is_json(r.content.decode()))
 		resp = json.loads(r.content.decode())
-		print(resp['hero_list'][0]['name'])
+		print(json.dumps(r.content.decode()))
+		#print(resp['hero_list'][0]['name'])
 
 	# test delete request with hero_id
 	def test_f_heroes_delete(self):

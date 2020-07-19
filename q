@@ -1,7 +1,7 @@
 import cherrypy
 import re, json
 import time
-from heroes_library import _hero_database, search_compare, string_compare, sort_key
+from heroes_library import _hero_database, search_compare, string_compare
 
 class HeroController(object):
 
@@ -58,11 +58,10 @@ class HeroController(object):
 					hd['iden'] = hero[4]
 					output['hero_list'].append(hd)
 
+
 		except Exception as ex:
 			output['result'] = 'error'
 			output['message'] = str(ex)
-
-		output['hero_list'].sort(reverse=True, key=sort_key)
 
 		return json.dumps(output)
 			
