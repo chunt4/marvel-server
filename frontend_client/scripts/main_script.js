@@ -9,6 +9,7 @@ filter_button = document.getElementById("filter-button");
 
 var filter = "";
 var key = "";
+var num_labels = -1;
 
 search_button.onmouseup = makeSearchRequest;
 
@@ -23,33 +24,61 @@ function applyFilter(){
     var selidx = filter_select.selectedIndex;
     filter = filter_select.options[selidx].value;
     console.log(filter);
-    if (filter == "good characters" || filter == "bad characters"){
+    if (filter == "good characters" || filter == "bad characters" || filter == "neutral characters"){
         key = "align";
     }else if(filter == "secret identity" || filter == "public identity"){
         key = "iden";
-    }else if(filter == "male" || filter == "female"){
+    }else if(filter == "male characters" || filter == "female characters" || filter == "agender characters"){
         key = "sex";
-    }else{
+    }else if(filter == "living characters" || filter == "deceased characters"){
+		key = "alive";
+	}else{
         filter = "";
         key = "";
     }
+
+	console.log("key: " + key);
+	console.log("filter: " + filter);
+}
+
+function reset_labels(max){
+	for (var i = 0; i <= max; i++) {
+		label_id = "label-" + i;
+		label = document.getElementById(label_id);
+		label.parentNode.removeChild(label);
+		num_labels--;
+	}
 }
 
 function makeSearchRequest() {
     console.log("started make search request");
 
-    var url = "http://student04.cse.nd.edu:51031/heroes/query/" + search_text;
+	reset_labels(num_labels);
+	console.log("resetting labels ... num_labels: " + num_labels);
+
+	console.log("key: " + key);
+	console.log("filter: " + filter);
+
+    var url = "http://student04.cse.nd.edu:51022/heroes/query/" + search_text.value;
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open(GET, url, true);
+    xhr.open("GET", url, true);
 
     xhr.onload = function(e) {
         if (xhr.readyState === 4){
             var query_json = JSON.parse(xhr.responseText);
-            i = 0
-            for (hero in query_json['hero_list']){
+			console.log(xhr.responseText);
+            i = 0;
+			console.log(query_json['hero_list'][0]['name'])
+			var hero_list = query_json['hero_list'];	
+           for(i = 0; i < hero_list.length; i++){
+				console.log("here");
+				console.log(hero_list[i][key]);
+				hero = hero_list[i];
                 if (hero[key] == filter){
+					num_labels++;
+
                     var id = hero['id'];
                     var name = hero['name'];
                     var align = hero['align'];
@@ -57,11 +86,11 @@ function makeSearchRequest() {
                     var iden = hero['iden'];
                     var sex = hero['sex'];
 
-
-
                     frontend_string = "name: " + name + ", aligns with: " + align + ", life status: " + alive + ", identity: " + iden + ", sex: " + sex;
+					console.log(frontend_string);
                     var label = new Label();
-                    label_id = "label-key-" + str(i);
+                    label_id = "label-" + num_labels;
+					console.log(label_id);
                     label.createLabel(frontend_string, label_id);
                     label.addAtPositionById("div-for-label");
                 }
@@ -73,7 +102,7 @@ function makeSearchRequest() {
 		console.error(xhr.statusText);
 	}
 
-    xhr.send("?");
+    xhr.send();
 
 
 }
