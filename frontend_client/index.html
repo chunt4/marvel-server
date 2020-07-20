@@ -32,7 +32,7 @@
 													<a href="./rankings_page.html">Character Rankings (Top 100)</a>
 												</li>
 												<li>
-													<a href="">Rate Character Matchups</a>
+													<a href="./rate_page.html">Rate Character Matchups</a>
 												</li>
 											</ul>
 										</div>
@@ -41,27 +41,34 @@
 
                                 <div class="form-group">
                             		<label for="tex-input">Search Character By Name</label>
-                            		<input name="text-input" type="text" class="form-control" id="input-text-4537465">
+                            		<input name="text-input" type="text" class="form-control" id="search-text">
                             	</div>
 
                                 <button id="search-button">Search</button>
                             	<div class="form-group">
                             		<label for="checkboxes">Filter by Category</label>
-                            		<select multiple="" class="form-control" id="multiselect-1594306">
-                            			<option>Good characters</option>
-                            			<option>Bad characters</option>
-                            			<option>Secret Identity</option>
-                            			<option>Public Identity</option>
-                            			<option>Male</option>
-                            			<option>Female</option>
+                            		<select multiple="" class="form-control" id="filter-select">
+                            			<option id="0">good characters</option>
+                            			<option id="1">bad characters</option>
+                            			<option id="2">secret Identity</option>
+                            			<option id="3">public Identity</option>
+                            			<option id="4">male</option>
+                            			<option id="5">female</option>
+										<option id="6">none</option>
                             		</select>
                             	</div>
 
-                                <button id="apply-filter">Apply Filter</button>
+                                <button id="filter-button">Apply Filter</button>
+
+								<div id="div-for-label" class="form-group">
+								</div>
 
 								<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 								<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 							</body>
+								<script type="text/javascript" src="scripts/visualLibrary.js"></script>
+								<script type="text/javascript" src="scripts/main_script.js"></script>
+
 						</html>
 
 
