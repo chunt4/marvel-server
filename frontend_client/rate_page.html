@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<style>
+			{
+				box-sizing: border-box;
+			}
+
+		.column{
+			float: left;
+			width: 50%;
+		}
+
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		.btn{
+			height: 250px;
+			width: 250px;
+		}
+		</style>
 		<meta charset="utf-8">
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 				<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,13 +48,29 @@
 													<a href="./index.html">Search Characters</a>
 												</li>
 												<li>
-													<a href="./rankings_page.html">Character Rankings</a>
+													<a href="./rankings_page.html">Character rankings (Top 100)</a>
 												</li>
 											</ul>
 										</div>
 									</div>
 								</nav>
-								<div class="container"></div>
+								<div class="container">
+									<!-- <div class="jumbotron"> --!>
+										<div style="text-align:center" class="row">
+											<h3> Pick who would win in a fight: <h4>
+											<div class="column" style="text-align:center">
+												<button type="submit" class="btn" id="left-hero">
+													<h3>Batman</h3>
+												</button>
+											</div>
+											<div style="text-align:center" class="column">
+												<button type="submit" class="btn" id="right-hero"><h3>Super Man</h3></button> 
+											</div>
+
+											<h1> V.S. </h1>
+										</div>
+								<!--	</div> --!>
+								</div>
 								<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 								<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 							</body>

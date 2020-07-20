@@ -69,14 +69,13 @@ function makeSearchRequest() {
         if (xhr.readyState === 4){
             var query_json = JSON.parse(xhr.responseText);
 			console.log(xhr.responseText);
-            i = 0;
 			console.log(query_json['hero_list'][0]['name'])
 			var hero_list = query_json['hero_list'];	
            for(i = 0; i < hero_list.length; i++){
 				console.log("here");
 				console.log(hero_list[i][key]);
 				hero = hero_list[i];
-                if (hero[key] == filter){
+                if (filter == "" || hero[key] == filter){
 					num_labels++;
 
                     var id = hero['id'];
