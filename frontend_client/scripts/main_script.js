@@ -1,4 +1,5 @@
 // main_script.js
+console.log("started main_script");
 
 // add reaction to Search button
 search_button = document.getElementById("search-button");
