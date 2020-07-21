@@ -3,7 +3,7 @@
 import unittest
 import requests
 import json
-from heroes_library import _hero_database
+from heroes_library import _hero_database, search_compare, string_compare, sort_key
 
 class TestLibrary(unittest.TestCase):
 
@@ -49,15 +49,15 @@ class TestLibrary(unittest.TestCase):
 		self.assertEqual(hero[3], 'male characters')
 		self.assertEqual(hero[4], 'public identity')
 
-	def test_search_hero(self):
+	def test_search_compare(self):
 		hdb = _hero_database()
 		hdb.load_heroes('heroes.dat')
 		hero = hdb.get_hero(3)
 		query = "iron man"
-		output = hdb.search_compare(hero[0], query)
-		self.assertEqual("success", output['results'])
-		hero_list = output['hero_list']
-		self.assertEqual(hero_list[0]['name'] == 'iron man (anthony \\\"tony\\\" stark)')
+		output = search_compare(hero[0], query, {'match':'false'})
+		self.assertEqual("true", output['match'])
+		
+		self.assertEqual(8, output['rate'])
 		
 
 	def test_set_hero(self):
