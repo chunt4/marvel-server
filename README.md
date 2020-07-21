@@ -13,14 +13,15 @@ OO Library API:
     attribute dictionaries at the specific hid. This database is created to be able to 
     enter the id of a hero and for it to return the hero's name, alignment, 
     living status, sex, and identity status as well as make adjustments/additions
-    to the current heroes in the database.
+    to the current heroes in the database. There are also three functions declared in the library. 
+    The first of which is search_compare(s1, s2, {"match":"false"}) which utilizes a second     function string_compare(s1, s2). The purpose of search compare is to determine if two strings match and rate the match if they do. It does this by iterating through each of the letters of s1 and comparing them to the first letter in s2. If they match, then string compare is called to evaluate how many characters in a row match and return a dictionary with match true and the rate. Search compare then returns that same dictionary. If they don't match, then search_compare calls search_compare(s1[1:], s2, match_dict) which iterates through the string to catch every possibility and does the same upon s2[1:]. Finally, sort_key(match_dict) just returns the rate of the inserted dictionary in order to sort the list of match results.
     
     Instructions: The library can be tested by executing test_api.py using the command "python3 test_api.py". 
     
 OO Server:
     The server utilizes cherrypy and a specific controller called HeroController 
     from heroesController.py to connect the url of the request to the execution
-    code. The controller has the functions GET_KEY, PUT_KEY, DELETE_KEY, GET_INDEX,
+    code. The controller has the functions GET_KEY, PUT_KEY, DELETE_KEY, GET_INDEX, GET_QUERY,
     POST_INDEX, and DELETE_INDEX. GET_KEY is connected to /heroes/:hero_id and 
     returns the attributes of the hero as key and value pairs in a dictionary
     corresponding to the hero's id that matches the hero_id provided using 
@@ -32,11 +33,19 @@ OO Server:
     with 'success' under the 'result' key. GET_INDEX is connected to /heroes/ and 
     returns a list under the 'heroes' key which contains a
     dictionary of each hero's information and 'success' under the 'result' key. 
-    POST_INDEX decodes the request body and
+    GET_QUERY is connected to /heroes/query/:query and iterates through every hero in the database
+    and uses search_compare to determine whether the specific character matches the search query.
+    If it does, all of the character's information including it's rate is appended to a list.
+    The list is finally sorted and output is returned with a key pairs 'results':'success' and
+    'hero_list':'[{...}, ...]'. POST_INDEX decodes the request body and
     and parses the body for a hero's attributes. It then creates a list containing those 
     attributes and uses set_hero(max_id + 1, hero_list) to add the hero and returns
     an output dictionary with 'success' under the 'result' key.Finally, DELETE_INDEX
     iterates over every hero in the database and calls delete_hero(hid) which deletes
     all the heros and returns success under the key result upon success. Our webservice
-    uses port 51027 and should be used as described by the functions and the connected
+    uses port 51022 and should be used as described by the functions and the connected
     urls from the heroesController object HeroController.
+    
+    Instructions: The webservice can be tested using the command "python3 test_ws.py".
+    Be sure that a server is running on student04.cse.nd.edu:51022 and to ensure all the test
+    work, start the server just before running the test.
