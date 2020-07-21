@@ -52,7 +52,13 @@ class TestLibrary(unittest.TestCase):
 	def test_search_hero(self):
 		hdb = _hero_database()
 		hdb.load_heroes('heroes.dat')
+		hero = hdb.get_hero(3)
 		query = "iron man"
+		output = hdb.search_compare(hero[0], query)
+		self.assertEqual("success", output['results'])
+		hero_list = output['hero_list']
+		self.assertEqual(hero_list[0]['name'] == 'iron man (anthony \\\"tony\\\" stark)')
+		
 
 	def test_set_hero(self):
 		hdb = _hero_database()
