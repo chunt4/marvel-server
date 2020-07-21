@@ -7,7 +7,7 @@ from heroes_library import _hero_database, search_compare, string_compare, sort_
 
 class TestLibrary(unittest.TestCase):
 
-	SITE_URL = 'http://student04.cse.nd.edu:51031'
+	SITE_URL = 'http://student04.cse.nd.edu:51022'
 	print("testing for server: " + SITE_URL)
 	HEROES_URL = SITE_URL + '/heroes/'
 
