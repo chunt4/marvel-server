@@ -110,7 +110,11 @@ class TestHeroes(unittest.TestCase):
 		r = requests.get(self.HEROES_URL + 'query/' + str(query), data=json.dumps(h))
 		self.assertTrue(self.is_json(r.content.decode()))
 		resp = json.loads(r.content.decode())
-		print(json.dumps(r.content.decode()))
+		#print(json.dumps(r.content.decode()))
+		hero_list = resp['hero_list']
+		self.assertTrue(hero_list[0]['name'], "iron man (anthony \\\"tony\\\"stark)")
+		self.assertTrue(hero_list[0]['rate'], 9)
+
 		#print(resp['hero_list'][0]['name'])
 
 	# test delete request with hero_id
