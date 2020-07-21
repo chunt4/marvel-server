@@ -19,6 +19,7 @@ def start_service():
         # CORS related options connections
         dispatcher.connect('hero_key_options', '/heroes/:hero_id', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
         dispatcher.connect('hero_options', '/heroes/', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
+        dispatcher.connect('hero_search_options', '/heroes/query/:query', controller=optionsController, action='OPTIONS', conditions=dict(method=['OPTIONS']))
         #dispatcher.connect('reset_key_options', '/reset/:hero_id', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
         #dispatcher.connect('reset_options', '/reset/', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
         #dispatcher.connect('rating_options', '/ratings/:hero_id', controller=optionsController, action = 'OPTIONS', conditions=dict(method=['OPTIONS']))
@@ -31,6 +32,7 @@ def start_service():
                 },
             '/': {
                 'request.dispatch': dispatcher,
+                'tools.CORS.on':True,
             }
         }
 

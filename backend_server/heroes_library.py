@@ -81,13 +81,14 @@ def search_compare(string1, string2, match):
 		return match
 
 
-	if string1 != '':
+	if string1 != '' and string2 != '':
 		if string1[0] == string2[0]:
 			match = string_compare(string1, string2)
 			if match['match'] == 'true':
 				return match
 		else:
 			match = search_compare(string1[1:], string2, match)
+			match = search_compare(string1, string2[1:], match)
 
 	return match
 
