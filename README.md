@@ -49,3 +49,9 @@ OO Server:
     Instructions: The webservice can be tested using the command "python3 test_ws.py".
     Be sure that a server is running on student04.cse.nd.edu:51022 and to ensure all the test
     work, start the server just before running the test.
+
+Steps to run all tests:
+    Navigate to web-server/backend_server/ and execute "python3 test_api.py"
+    Navigate to web-server/backend_server/ and execute "python3 server.py" and then in another
+    terminal, navigate to the same place and execute "python3 test_ws.py"
+    Keep the server running or restart it. In the other terminal, navigate to student04.cse.nd.edu/jbigej/frontend_client/index.html 
