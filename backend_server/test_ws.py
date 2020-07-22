@@ -7,7 +7,7 @@ import json
 
 class TestHeroes(unittest.TestCase):
 
-	SITE_URL = 'http://student04.cse.nd.edu:51022'
+	SITE_URL = 'http://student04.cse.nd.edu:51027'
 	print("testing for server: " + SITE_URL)
 	HEROES_URL = SITE_URL + '/heroes/'
 
