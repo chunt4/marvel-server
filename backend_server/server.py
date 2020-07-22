@@ -28,7 +28,7 @@ def start_service():
             'global': {
                 'server.thread_pool': 5,
                 'server.socket_host': 'student04.cse.nd.edu',
-                'server.socket_port': 51022, #change port number to your assigned
+                'server.socket_port': 51027, #change port number to your assigned
                 },
             '/': {
                 'request.dispatch': dispatcher,

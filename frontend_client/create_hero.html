@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<style>
+			{
+				box-sizing: border-box;
+			}
+
+		.column{
+			float: left;
+			width: 50%;
+		}
+
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		.btn {
+			height: 250px;
+			width: 250px;
+		}
+
+		</style>
+		<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+					<title>Title</title>
+					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+						<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
+							<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+							</head>
+							<body>
+								<nav class="navbar navbar-inverse">
+									<div class="container">
+										<div class="navbar-header">
+											<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+												<span class="sr-only">Toggle navigation</span>
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+											</button>
+											<a class="navbar-brand" href="#">Create Hero</a>
+										</div>
+										<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+											<ul class="nav navbar-nav navbar-right">
+												<li>
+													<a href="./randomizer_page.html">Character Randomizer</a>
+												</li>
+												<li>
+													<a href="./index.html">Search Marvel Characters</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</nav>
+								<div class="container" style="text-align:center">
+									<h1>Create your own hero!</h1>
+									<h4>What is your hero's name?</h4>
+									<input name="text-input" type="text" class="form-control" id="input-hero-name"</input>
+									<h4>Is your hero dead or alive?</h4>
+									<div class="form-group">
+										<div class="radio">
+											<label>
+												<input type="radio" name="alive-radios" id="radio-dead" value="DEAD" checked="checked">
+												DEAD
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="alive-radios" id="radio-alive" value="ALIVE">
+												ALIVE
+											</label>
+										</div>
+									</div>
+									<h4>Is your hero good or bad?</h4>
+									<div class="form-group">
+										<div class="radio">
+											<label>
+												<input type="radio" name="align-radios" id="radio-good" value="GOOD" checked="checked">
+												GOOD
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="align-radios" id="radio-bad" value="BAD">
+												BAD
+											</label>
+										</div>
+									</div>
+									<h4>Is your hero male or female?</h4>
+									<div class="form-group">
+										<div class="radio">
+											<label>
+												<input type="radio" name="sex-radios" id="radio-male" value="MALE" checked="checked">
+												MALE
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="sex-radios" id="radio-female" value="FEMALE">
+												FEMALE
+											</label>
+										</div>
+									</div>
+									<h4>Does your hero have a secret or public identity?</h4>
+									<div class="form-group">
+										<div class="radio">
+											<label>
+												<input type="radio" name="iden-radios" id="radio-secret" value="SECRET" checked="checked">
+												SECRET
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="iden-radios" id="radio-public" value="PUBLIC">
+												PUBLIC
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="container">
+									<div class="container" style="text-align:center">
+										<button type="submit" style="height: 40px; weight: 40px" class="btn" id="Create"><h4>Create</h4></button>
+									</div>
+								</div>				
+								<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+								<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+							</body>
+								<script type="text/javascript" src="scripts/visualLibrary.js"></script>
+								<script type="text/javascript" src="scripts/create_script.js"></script>
+						</html>

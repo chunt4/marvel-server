@@ -22,7 +22,6 @@ function createLabelsDynamically(){
 function applyFilter(){
     console.log("applying filter");
     var selidx = filter_select.selectedIndex;
-    filter = filter_select.options[selidx].value;
     console.log(filter);
     if (filter == "good characters" || filter == "bad characters" || filter == "neutral characters"){
         key = "align";
@@ -59,7 +58,7 @@ function makeSearchRequest() {
 	console.log("key: " + key);
 	console.log("filter: " + filter);
 
-    var url = "http://student04.cse.nd.edu:51031/heroes/query/" + search_text.value;
+    var url = "http://student04.cse.nd.edu:51027/heroes/query/" + search_text.value;
 
     var xhr = new XMLHttpRequest();
 
@@ -70,7 +69,7 @@ function makeSearchRequest() {
             var query_json = JSON.parse(xhr.responseText);
 			console.log(xhr.responseText);
 			console.log(query_json['hero_list'][0]['name'])
-			var hero_list = query_json['hero_list'];
+			var hero_list = query_json['hero_list'];	
            for(i = 0; i < hero_list.length; i++){
 				console.log("here");
 				console.log(hero_list[i][key]);
