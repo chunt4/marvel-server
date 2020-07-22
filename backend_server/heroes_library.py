@@ -88,7 +88,6 @@ def search_compare(string1, string2, match):
 				return match
 		else:
 			match = search_compare(string1[1:], string2, match)
-			match = search_compare(string1, string2[1:], match)
 
 	return match
 
