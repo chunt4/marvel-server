@@ -47,7 +47,7 @@ OO Server:
     urls from the heroesController object HeroController.
     
     Instructions: The webservice can be tested using the command "python3 test_ws.py".
-    Be sure that a server is running on student04.cse.nd.edu:51022 and to ensure all the test
+    Be sure that a server is running on student04.cse.nd.edu:51027 and to ensure all the test
     work, start the server just before running the test.
 
 Steps to run all tests:
