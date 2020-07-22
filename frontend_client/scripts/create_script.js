@@ -37,7 +37,7 @@ function getValuesFromForm(){
 	}
 
 	var parameters = [name, align, alive, sex, iden];
-
+	return parameters;
 }
 
 function submitHero(){
@@ -45,19 +45,26 @@ function submitHero(){
 	var params = getValuesFromForm();
 	var xhr = new XMLHttpRequest();
 	var url = "http://student04.cse.nd.edu:51027/heroes/";
-	xhr.open("POST", url, true)
+	var dict = {
+		"name": params[0],
+		"align": params[1],
+		"alive": params[2],
+		"sex": params[3],
+		"iden": params[4]
+	}
+
+	xhr.open("POST", url, true)	
 
 	xhr.onload = function(e) {
 		console.log(xhr.responseText);
 		console.log(params);
-
 	}
 
 	xhr.onerror = function(e) {
 		console.error(xhr.statusText);
 	}
 
-	xhr.send();
+	xhr.send(JSON.stringify(dict));
 }
 
 
